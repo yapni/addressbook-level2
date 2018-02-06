@@ -84,9 +84,13 @@ public class Main {
         do {
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+            try {
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            } catch (StorageOperationException e) {
+                ui.showToUser(e.getMessage());
+            }
 
         } while (!ExitCommand.isExit(command));
     }
@@ -104,16 +108,16 @@ public class Main {
      *
      * @param command user command
      * @return result of the command
+     * @throws StorageOperationException if there are errors writing to the storage file
      */
-    private CommandResult executeCommand(Command command)  {
+    private CommandResult executeCommand(Command command) throws StorageOperationException  {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
-            ui.showToUser(e.getMessage());
-            throw new RuntimeException(e);
+        } catch (StorageOperationException e) {
+            throw new StorageOperationException("Error writing to storage file: file may be set to read only.");
         }
     }
 
