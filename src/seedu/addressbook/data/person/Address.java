@@ -17,9 +17,9 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS =
             "Person addresses should be entered by block number, street, unit and followed by postal code"
                     + "separated by ','";
+    public static final String ADDRESS_VALIDATION_REGEX = ".+, .+, .+, .+";
     public static final String ADDRESS_FORMAT = "BLOCK, STREET, UNIT, POSTAL_CODE";
     public static final String SEPARATOR_COMMA = ", ";
-    // TODO: add ADDRESS_VALIDATION_REGEX for better input validation
 
     public final String value;
     private final Block block;
@@ -81,26 +81,7 @@ public class Address {
      * Returns true if a given string is a valid person address.
      */
     private static boolean isValidAddress(String test) {
-        // TODO: A better validation for each component
-        return test.split(",").length > 0; // has at least one component
-    }
-
-    private String getFullAddressValue() {
-        String fullAddress = "";
-        if (!block.getValue().equals("")) {
-            fullAddress += block.getValue();
-        }
-        if (!street.getValue().equals("")) {
-            fullAddress += SEPARATOR_COMMA + street.getValue();
-        }
-        if (!unit.getValue().equals("")) {
-            fullAddress += SEPARATOR_COMMA + unit.getValue();
-        }
-        if (!postalCode.getValue().equals("")) {
-            fullAddress += SEPARATOR_COMMA + postalCode.getValue();
-        }
-
-        return fullAddress;
+        return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
     public Block getBlock() { return block; }
