@@ -46,7 +46,7 @@ public class Address {
         unit = new Unit(initialiseUnitValue(components));
         postalCode = new PostalCode(initialisePostalCodeValue(components));
 
-        value = this.getFullAddressValue();
+        value = address;
     }
 
     /**
@@ -113,8 +113,6 @@ public class Address {
 
     @Override
     public int hashCode() {
-        String fullAddress = block.toString() + SEPARATOR_COMMA + street.toString() + SEPARATOR_COMMA + unit.toString()
-                + SEPARATOR_COMMA + postalCode.toString();
-        return fullAddress.hashCode();
+        return value.hashCode();
     }
 }
