@@ -34,6 +34,10 @@ public class Person implements ReadOnlyPerson {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
     }
 
+    public int compareTo(ReadOnlyPerson p) {
+        return this.getName().compareTo(p.getName());
+    }
+
     @Override
     public Name getName() {
         return name;
