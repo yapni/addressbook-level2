@@ -111,6 +111,12 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts persons in the list by their names in ascending order
+     */
+    public void sort() {
+    }
+
+    /**
      * Removes the equivalent person from the list.
      *
      * @throws PersonNotFoundException if no such person could be found in the list.

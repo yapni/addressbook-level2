@@ -1,20 +1,22 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.person.ReadOnlyPerson;
-
-import java.util.List;
-
+/**
+ * Sorts all person in the address book by their names in ascending order
+ */
 public class SortCommand extends Command {
-    public static final String COMMAND_WORD = "list";
+
+    public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays all persons in the address book as a list with index numbers.\n"
+            + ": Sorts all person in the address book by their names in ascending order\n"
             + "Example: " + COMMAND_WORD;
+
+    public static final String MESSAGE_SUCCESS = "Address Book sorted. Enter the list command to view the sorted list.";
 
 
     @Override
     public CommandResult execute() {
-        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
-        return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
+        addressBook.sortAllPersons();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
