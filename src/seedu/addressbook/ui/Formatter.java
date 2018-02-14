@@ -19,7 +19,7 @@ public class Formatter {
     private static final String LS = System.lineSeparator();
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
-    public static final int DISPLAYED_INDEX_OFFSET = 1;
+    private static final int DISPLAYED_INDEX_OFFSET = 1;
 
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
@@ -37,21 +37,17 @@ public class Formatter {
     /** Formats welcome message and store each line separately in a string array */
     public String[] getWelcomeMsgStringArray(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        String[] msg
-                = {DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo, DIVIDER};
-        return msg;
+        return new String[] {DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo, DIVIDER};
     }
 
     /** Formats goodbye message and store each line separately in a string array */
     public String[] getGoodByeMsgStringArr() {
-        String[] msg = {MESSAGE_GOODBYE, DIVIDER, DIVIDER};
-        return msg;
+        return new String[] {MESSAGE_GOODBYE, DIVIDER, DIVIDER};
     }
 
     /** Formats failed initialisation message and store each line separately in a string array */
     public String[] getInitFailedMessage() {
-        String[] msg = {MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
-        return msg;
+        return new String[] {MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
     }
 
     /** Formats message that is to be displayed to user
@@ -65,8 +61,7 @@ public class Formatter {
 
     /** Formats message that shows the result of the user's command and store each line separately in a string array */
     public String[] getShowResultMsgStringArr(String feedbackMsg) {
-        String[] msg = {feedbackMsg, DIVIDER};
-        return msg;
+        return new String[] {feedbackMsg, DIVIDER};
     }
 
     /** Formats a list of strings as a viewable indexed list. */
