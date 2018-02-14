@@ -41,6 +41,7 @@ public class TextUi {
 
     private final Scanner in;
     private final PrintStream out;
+    private final Formatter formatter;
 
     public TextUi() {
         this(System.in, System.out);
@@ -49,6 +50,7 @@ public class TextUi {
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
+        formatter = new Formatter();
     }
 
     /**
@@ -79,7 +81,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        out.print(formatter.getPromptMsgForCommand());
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
