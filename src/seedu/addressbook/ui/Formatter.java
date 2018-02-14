@@ -12,28 +12,29 @@ public class Formatter {
 
     private static final String DIVIDER = "===================================================";
 
+    /** A decorative prefix added to the beginning of lines printed by AddressBook */
+    private static final String LINE_PREFIX = "|| ";
+
+    /** A platform independent line separator. */
+    private static final String LS = System.lineSeparator();
+
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
 
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
-    /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
-
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
-
-    /** Message that prompts for user command */
+    /** Formats message that prompts for user command */
     public String getPromptMsgForCommand() {
         return LINE_PREFIX + "Enter command: ";
     }
 
-    /** Message that echos command entered by user */
+    /** Formats message that echos command entered by user */
     public String getEchoCommandMsg(String command) {
         return "[Command entered:" + command + "]";
     }
 
+    /** Formats welcome message and store each line separately in a string array */
     public String[] getWelcomeMsgStringArray(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         String[] msg
@@ -41,17 +42,19 @@ public class Formatter {
         return msg;
     }
 
+    /** Formats goodbye message and store each line separately in a string array */
     public String[] getGoodByeMsgStringArr() {
         String[] msg = {MESSAGE_GOODBYE, DIVIDER, DIVIDER};
         return msg;
     }
 
+    /** Formats failed initialisation message and store each line separately in a string array */
     public String[] getInitFailedMessage() {
         String[] msg = {MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
         return msg;
     }
 
-    /** Formats message to display to user
+    /** Formats message that is to be displayed to user
      *
      * @param msg Message to be displayed
      * @return Displayed message decorated with a prefix and line separator
@@ -60,13 +63,14 @@ public class Formatter {
         return LINE_PREFIX + msg.replace("\n", LS + LINE_PREFIX);
     }
 
+    /** Formats message that shows the result of the user's command and store each line separately in a string array */
     public String[] getShowResultMsgStringArr(String feedbackMsg) {
         String[] msg = {feedbackMsg, DIVIDER};
         return msg;
     }
 
     /** Formats a list of strings as a viewable indexed list. */
-    public static String getIndexedListForViewing(List<String> listItems) {
+    public String getIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
@@ -81,7 +85,7 @@ public class Formatter {
      *
      * @param visibleIndex visible index for this listing
      */
-    public static String getIndexedListItem(int visibleIndex, String listItem) {
+    public String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 }
