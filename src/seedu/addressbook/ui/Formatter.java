@@ -25,28 +25,28 @@ public class Formatter {
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
     /** Formats message that prompts for user command */
-    public String getPromptMsgForCommand() {
+    String getPromptMsgForCommand() {
         return LINE_PREFIX + "Enter command: ";
     }
 
     /** Formats message that echos command entered by user */
-    public String getEchoCommandMsg(String command) {
+    String getEchoCommandMsg(String command) {
         return "[Command entered:" + command + "]";
     }
 
     /** Formats welcome message and store each line separately in a string array */
-    public String[] getWelcomeMsgStringArray(String version, String storageFilePath) {
+    String[] getWelcomeMsgStringArray(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         return new String[] {DIVIDER, DIVIDER, MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo, DIVIDER};
     }
 
     /** Formats goodbye message and store each line separately in a string array */
-    public String[] getGoodByeMsgStringArr() {
+    String[] getGoodByeMsgStringArr() {
         return new String[] {MESSAGE_GOODBYE, DIVIDER, DIVIDER};
     }
 
     /** Formats failed initialisation message and store each line separately in a string array */
-    public String[] getInitFailedMessage() {
+    String[] getInitFailedMessage() {
         return new String[] {MESSAGE_INIT_FAILED, DIVIDER, DIVIDER};
     }
 
@@ -55,17 +55,17 @@ public class Formatter {
      * @param msg Message to be displayed
      * @return Displayed message decorated with a prefix and line separator
      */
-    public String formatMsgToDisplay(String msg) {
+    String formatMsgToDisplay(String msg) {
         return LINE_PREFIX + msg.replace("\n", LS + LINE_PREFIX);
     }
 
     /** Formats message that shows the result of the user's command and store each line separately in a string array */
-    public String[] getShowResultMsgStringArr(String feedbackMsg) {
+    String[] getShowResultMsgStringArr(String feedbackMsg) {
         return new String[] {feedbackMsg, DIVIDER};
     }
 
     /** Formats a list of strings as a viewable indexed list. */
-    public String getIndexedListForViewing(List<String> listItems) {
+    String getIndexedListForViewing(List<String> listItems) {
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
@@ -80,7 +80,7 @@ public class Formatter {
      *
      * @param visibleIndex visible index for this listing
      */
-    public String getIndexedListItem(int visibleIndex, String listItem) {
+    String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
 }
