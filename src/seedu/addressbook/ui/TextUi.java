@@ -89,21 +89,12 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser("[Command entered:" + fullInputLine + "]");
+        showToUser(formatter.getEchoCommandMsg(fullInputLine));
         return fullInputLine;
     }
 
-
     public void showWelcomeMessage(String version, String storageFilePath) {
-        String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                DIVIDER);
+        showToUser(formatter.getWelcomeMsgStringArray(version, storageFilePath));
     }
 
     public void showGoodbyeMessage() {
