@@ -8,7 +8,11 @@ import static seedu.addressbook.common.Messages.MESSAGE_PROGRAM_LAUNCH_ARGS_USAG
 import static seedu.addressbook.common.Messages.MESSAGE_USING_STORAGE_FILE;
 import static seedu.addressbook.common.Messages.MESSAGE_WELCOME;
 
-public class Formatter {
+/**
+ * Formats text for display in the UI
+ */
+
+class Formatter {
 
     private static final String DIVIDER = "===================================================";
 
